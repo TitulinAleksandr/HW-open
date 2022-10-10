@@ -28,4 +28,22 @@ def get_shop_list_by_dishes(dishes, person_count):
     print(shop_list)
     return shop_list
 
-get_shop_list_by_dishes(['Омлет', 'Фахитос'], 5)
+# get_shop_list_by_dishes(['Омлет', 'Фахитос'], 5)
+
+def number_of_line(*files):
+    all_text = []
+    for file in files:
+        with open(file, 'rt', encoding='utf-8') as f:
+            y = f.readlines()
+            all_text.append(y)
+    all_text.sort(key=len)
+    
+    for file in all_text:
+        with open('new_file.txt', 'a', encoding='utf-8') as f:
+            r = len(file)
+            f.writelines(f'\n{r}\n')
+            f.writelines(file)
+   
+number_of_line('1.txt','2.txt', '3.txt')
+
+
