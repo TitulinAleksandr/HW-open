@@ -31,19 +31,20 @@ def get_shop_list_by_dishes(dishes, person_count):
 # get_shop_list_by_dishes(['Омлет', 'Фахитос'], 5)
 
 def number_of_line(*files):
-    all_text = []
+    all_text = {}
     for file in files:
         with open(file, 'rt', encoding='utf-8') as f:
             y = f.readlines()
-            all_text.append(y)
-    all_text.sort(key=len)
-    
-    for file in all_text:
+            all_text[file] = y
+    all_text1 = {k: all_text[k] for k in sorted(all_text, key=all_text.get, reverse=True)}
+    for key, value in all_text1.items():
         with open('new_file.txt', 'a', encoding='utf-8') as f:
-            r = len(file)
+            r = len(value)
+            f.writelines(f'{key}')
             f.writelines(f'\n{r}\n')
-            f.writelines(file)
-   
+            f.writelines(value)
+            f.writelines('\n')
+    
 number_of_line('1.txt','2.txt', '3.txt')
 
 
